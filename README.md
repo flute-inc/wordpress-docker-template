@@ -19,7 +19,7 @@ $ docker-compose up -d
 
 ## 補足
 
-#### プラグイン
+### プラグイン
 
 * プラグインの追加は、Dockerfile で行ってください。
 
@@ -35,16 +35,17 @@ RUN wget .....
 ```
 
 * Dockerfile を更新したあとは、 `docker-compose build` および `./wordpress` ディレクトリの削除を行ってから `docker-compose up -d` してください。
+* **<font color="Red">【注意】</font>** テーマ開発を `./wordpress/wp-content` 内で行っている場合、 `/wordpress` ディレクトリを単に削除するとまずいですね...。どなたか良い方法あれば教えてください。
 
 ```
 $ docker-compose down  # コンテナを起動している場合は停止
 $ docker-compose build
-$ rm -rf ./wordpress
+$ rm -rf ./wordpress  # /wordpress/wp-content/themes の退避が必要であれば適宜...mm
 $ docker-compose up -d
 ```
 
 
-#### テーマ
+### テーマ
 
 * wordpress のテーマ開発を別リポジトリ（別のローカルディレクトリ）で行う場合、 `docker-compose.yml` でそのディレクトリをボリュームマウントしてください。
 
