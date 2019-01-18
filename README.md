@@ -6,8 +6,15 @@ docker-compose でローカル開発用の wordpress / mysql を 立ち上げる
 
 ## 起動方法
 
-1. .env.sample をコピーして、.env を配備
-2. `$ docker-compose up -d`
+`.env.sample` をコピーして `.env` を配備したうえで、docker-compose を起動してください。
 
-http://localhost:5000/  # wordpress
-http://localhost:5001/  # phpMyAdmin
+```
+$ cp .env.sample .env
+$ docker-compose up -d
+```
+
+## 動作確認
+
+* http://localhost:5000/  # wordpress
+* http://localhost:5001/  # phpMyAdmin
+
