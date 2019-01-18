@@ -1,4 +1,4 @@
-# wordpress-docker
+# wordpress-docker-template
 
 ## 概要
 
