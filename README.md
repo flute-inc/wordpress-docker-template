@@ -18,3 +18,18 @@ $ docker-compose up -d
 * http://localhost:5000/  # wordpress
 * http://localhost:5001/  # phpMyAdmin
 
+## 補足
+
+* wordpress のテーマ開発を別リポジトリ（別のローカルディレクトリ）で行う場合、 `docker-compose.yml` でそのディレクトリをボリュームマウントしてください。
+
+``` docker-copmose.yml
+  ...
+
+  wordpress:
+    ...
+    volumes:
+      - ./wordpress:/var/www/html
+      - /path/to/myTheme:/var/www/html/wp-content/themes/myTheme # 別リポジトリでテーマ開発をする場合
+    ports: 
+      ...
+```
