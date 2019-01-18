@@ -6,10 +6,9 @@ docker-compose でローカル開発用の wordpress / mysql を 立ち上げる
 
 ## 起動方法
 
-`.env.sample` をコピーして `.env` を配備したうえで、docker-compose を起動してください。
-
 ```
 $ cp .env.sample .env
+$ docker-compose build
 $ docker-compose up -d
 ```
 
@@ -19,6 +18,33 @@ $ docker-compose up -d
 * http://localhost:5001/  # phpMyAdmin
 
 ## 補足
+
+#### プラグイン
+
+* プラグインの追加は、Dockerfile で行ってください。
+
+```
+...
+
+# WP プラグイン (zip) ダウンロード
+WORKDIR /tmp/wp-plugins
+RUN wget https://downloads.wordpress.org/plugin/contact-form-7.5.1.1.zip  # プラグインを追加
+RUN wget .....
+
+...
+```
+
+* Dockerfile を更新したあとは、 `docker-compose build` および `./wordpress` ディレクトリの削除を行ってから `docker-compose up -d` してください。
+
+```
+$ docker-compose down  # コンテナを起動している場合は停止
+$ docker-compose build
+$ rm -rf ./wordpress
+$ docker-compose up -d
+```
+
+
+#### テーマ
 
 * wordpress のテーマ開発を別リポジトリ（別のローカルディレクトリ）で行う場合、 `docker-compose.yml` でそのディレクトリをボリュームマウントしてください。
 
